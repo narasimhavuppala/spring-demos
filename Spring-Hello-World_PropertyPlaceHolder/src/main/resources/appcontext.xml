@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+	<context:property-placeholder location="app.properties"/>
+	
+<!-- 	<bean id="propertyFile" -->
+<!-- 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> -->
+<!-- 		<property name="location" value="app.properties"></property> -->
+
+<!-- 	</bean> -->
+
+
+	<bean id="addres" name="myaddress" class="com.demo.model.Address"></bean>
+
+
+	<bean id="student" name="mystudent" class="com.demo.model.Student" autowire="byName">
+ 		<constructor-arg ref="mydepartment"></constructor-arg> 
+<!-- 		<property name="addres" ref="myaddress"></property> -->
+		<property name="studentName" value="Tom"></property>
+	</bean>
+
+	<bean id="department" name="mydepartment" class="com.demo.model.Department">
+		<property name="deptHead" value="${dept.deprtmentHead}"></property>
+		<property name="deptName" value="${dept.deprtmentHead}"></property>
+	</bean>
+
+
+	<bean name="myaware"
+		class="com.demo.model.aware.myAwareInterfaces">
+	</bean>
+</beans>
