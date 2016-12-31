@@ -8,23 +8,26 @@
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location" value="app.properties"></property>
 
+
+
 	</bean>
 
 
-	<bean id="dev_address" name="addres" class="com.demo.model.Address">
-		<qualifier value="dev"></qualifier>
-	</bean>
-<!-- 	<bean id="test_address" name="addres_test" class="com.demo.model.Address"> -->
-<!-- 		<qualifier value="test"></qualifier> -->
-<!-- 	</bean> -->
+	<bean id="address" name="address" class="com.demo.model.Address" />
+	<!-- <qualifier value="dev"></qualifier> -->
+
+	<!-- <bean id="test_address" name="addres_test" class="com.demo.model.Address"> -->
+	<!-- <qualifier value="test"></qualifier> -->
+	<!-- </bean> -->
 
 
 	<bean id="student" name="mystudent" class="com.demo.model.Student"
-		autowire="byType">
-		<constructor-arg ref="mydepartment"></constructor-arg>
-<!-- 		 <property name="addres" ref="dev_address"></property>  -->
-		<property name="studentName" value="Tom"></property>
-		<qualifier value="addres_test"></qualifier>
+		autowire="constructor" init-method="" destroy-method="">
+<!-- 		<constructor-arg ref="mydepartment"></constructor-arg> -->
+		 <property name="addres" ref="address"></property>
+		<!-- <property name="studentName" value="Tom"></property> -->
+		<!-- <qualifier value="addres_test"></qualifier> -->
+		<property name="studentName" value="#{systemProperties['env']"></property>
 
 	</bean>
 

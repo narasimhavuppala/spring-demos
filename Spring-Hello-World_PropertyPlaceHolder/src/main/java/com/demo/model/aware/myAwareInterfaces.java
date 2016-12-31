@@ -11,11 +11,13 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Component;
 
 /**
  * @author Shree
  *
  */
+@Component("myaware")
 public class myAwareInterfaces implements ApplicationContextAware, EnvironmentAware, BeanFactoryAware, Aware {
 
 	/* (non-Javadoc)

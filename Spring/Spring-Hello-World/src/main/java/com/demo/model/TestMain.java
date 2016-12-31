@@ -20,21 +20,19 @@ public class TestMain {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Resource rs=new ClassPathResource("appcontext.xml");
-		BeanFactory bf=new XmlBeanFactory(rs);
+	   // Resource rs=new ClassPathResource("appcontext.xml");
+		//BeanFactory bf=new XmlBeanFactory(rs);	
 		
-		
-		//ApplicationContext bf = 
-	    		//new ClassPathXmlApplicationContext("appcontext.xml");
-	    	
-		
+		ApplicationContext bf=new ClassPathXmlApplicationContext("appcontext.xml");
+
 		Student objStudent=(Student)bf.getBean("mystudent" );
 		Department dept=(Department)bf.getBean("mydepartment");
 		
+	//	System.out.println(dept.getDeptHead());
+		
 		
 		System.out.println(objStudent.getAddres());
-		System.out.println(objStudent.getStudentName());
-		//System.out.println(dept.getDeptHead());
+		System.out.println(objStudent.getDepartment());
 
 	}
 

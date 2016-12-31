@@ -3,19 +3,37 @@
  */
 package com.demo.model;
 
+import java.util.Map;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 import org.springframework.beans.factory.BeanNameAware;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 /**
  * @author Shree
  *
  */
+@Component("mystudent")
 public class Student implements BeanNameAware {
 	private int id;
+	@Value("#{systemEnvironment['env']}")
 	private String studentName;
-	private Address addres;
-	private Department  department;
 	
+	@Value("#{systemProperties}")
+	private Map systemProperties;
+	
+	@Value("#{systemEnvironment}")
+	private Map systemEnvironment;
 
+	@Autowired
+	private Address addres;
+	private Department department;
+
+	@Autowired
 	public Student(Department department) {
 		super();
 		this.department = department;
@@ -53,12 +71,33 @@ public class Student implements BeanNameAware {
 		this.addres = addres;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.springframework.beans.factory.BeanNameAware#setBeanName(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.springframework.beans.factory.BeanNameAware#setBeanName(java.lang.
+	 * String)
 	 */
 	public void setBeanName(String paramString) {
-		// TODO Auto-generated method stub
-		
+
 	}
+
+	public Map getSystemProperties() {
+		return systemProperties;
+	}
+
+	public void setSystemProperties(Map systemProperties) {
+		this.systemProperties = systemProperties;
+	}
+
+	public Map getSystemEnvironment() {
+		return systemEnvironment;
+	}
+
+	public void setSystemEnvironment(Map systemEnvironment) {
+		this.systemEnvironment = systemEnvironment;
+	}
+	
+	
 
 }

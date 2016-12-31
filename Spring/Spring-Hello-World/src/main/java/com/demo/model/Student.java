@@ -3,9 +3,13 @@
  */
 package com.demo.model;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 
 /**
  * @author Shree
@@ -59,6 +63,7 @@ public class Student implements InitializingBean,DisposableBean {
 	/* (non-Javadoc)
 	 * @see org.springframework.beans.factory.DisposableBean#destroy()
 	 */
+	@PreDestroy
 	public void destroy() throws Exception {
 
 		System.out.println("before Destroy for Student");
@@ -67,6 +72,7 @@ public class Student implements InitializingBean,DisposableBean {
 	/* (non-Javadoc)
 	 * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
 	 */
+	@PostConstruct
 	public void afterPropertiesSet() throws Exception {
 
 		System.out.println("After properties set for Student");

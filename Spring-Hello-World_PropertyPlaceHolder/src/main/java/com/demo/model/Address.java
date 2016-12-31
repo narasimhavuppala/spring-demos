@@ -1,12 +1,16 @@
+
 /**
  * 
  */
 package com.demo.model;
 
+import org.springframework.stereotype.Component;
+
 /**
  * @author Shree
  *
  */
+@Component
 public class Address {
 
 	private String streetName;
