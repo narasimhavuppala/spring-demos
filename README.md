@@ -14,6 +14,10 @@ This project covers Spring core module. I have design this module in such a way 
  - Annotations enabling
     - Context:AnnotationConfig
     - Context:ComponentScan
+ - ApplicationContext
+   - ClasspathXmlApplicationContext
+   - FileSystemXMLApplicationContext
+   - AnnotationConfigApplicationContext
  - Properties Files Handling
      - @PropertySource
      - context:PropertySource
