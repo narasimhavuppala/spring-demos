@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.demo.model;
+package com.demo.model.events;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;

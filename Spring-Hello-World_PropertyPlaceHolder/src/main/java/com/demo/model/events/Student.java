@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.demo.model;
+package com.demo.model.events;
 
 import java.util.Map;
 
