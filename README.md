@@ -39,8 +39,34 @@ This project covers Spring core module. I have design this module in such a way 
    - Conditional beans
     - Implements Condition(part of context module)
  - Spring Container module metadata
-    - Aware Interfaces
- 
+    - Aware Interfaces -
+    
+    
+    
+# spring-jdbc
+ - Why Spring JDBC…?Framework
+ - What Extra does it for you?
+    - Connections
+    - Transactions
+    - Exceptions
+    - Objects mapping
+    - Clear separation of Business Logic from JDBC Specific code
+ - Template Design Pattern
+ - Standard Flight Check In
+ - JDBC Set of Actions
+ - Co-relate both
+ - SQL Exception Mapper
+    - Checked Exceptions
+    - UnChecked Exceptions
+- JDBC Template Famous Methods
+- Queries
+   - Execute..For DDL
+   - QueryForObject
+   - Update
+   - Query
+   - Map JDBC to JDBCTemplate
+   
+
     
     
    
