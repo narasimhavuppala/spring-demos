@@ -20,6 +20,8 @@ public class TestMain {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		
+		
 	   // Resource rs=new ClassPathResource("appcontext.xml");
 		//BeanFactory bf=new XmlBeanFactory(rs);	
 		

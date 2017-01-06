@@ -21,42 +21,14 @@ import com.spring.jdbc.demo.dao.mapper.DepartmentSqlMapping;
  */
 public class DepartmentRepositoryImpl implements DepartmentRepository {
 
+	//Templates
 	private JdbcTemplate jdbcTemplate;
-	
 	private NamedParameterJdbcTemplate namedJdbcTemplate;
 
+	//Mappers
 	private DepartmentSqlMapping sqlMapping;
 	private DepartmentListSqlMapper listSqlMapping;
-
-	public DepartmentListSqlMapper getListSqlMapping() {
-		return listSqlMapping;
-	}
-
-	public void setListSqlMapping(DepartmentListSqlMapper listSqlMapping) {
-		this.listSqlMapping = listSqlMapping;
-	}
-
-	public NamedParameterJdbcTemplate getNamedJdbcTemplate() {
-		return namedJdbcTemplate;
-	}
-
-	public void setNamedJdbcTemplate(NamedParameterJdbcTemplate namedJdbcTemplate) {
-		this.namedJdbcTemplate = namedJdbcTemplate;
-	}
-
-	public DepartmentSqlMapping getSqlMapping() {
-		return sqlMapping;
-	}
-
-	public void setSqlMapping(DepartmentSqlMapping sqlMapping) {
-		this.sqlMapping = sqlMapping;
-	}
-
-	public DepartmentRepositoryImpl(JdbcTemplate jdbcTemplate) {
-		super();
-		this.jdbcTemplate = jdbcTemplate;
-	}
-
+	
 	@Override
 	public boolean createDepartment(Department department) {
 		String SQL = "INSERT INTO DEPARTMENT(ID, DEPARTMENTHEAD,DEPARTMENTNAME) VALUES (" + department.getDepartmentId()
@@ -69,15 +41,18 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
 
 	@Override
 	public int updateDepartment(Department department) {
-		// Approach 1
+		// Approach 1--Statement
 		String UpdateSQL = "UPDATE Department SET DEPARTMENTHEAD='" + department.getDepartmentHead()
 				+ "' ,DEPARTMENTNAME='" + department.getDepartmentName() + "' WHERE id=" + department.getDepartmentId();
 		System.out.println(UpdateSQL);
-		// return this.jdbcTemplate.update(UpdateSQL);
-		// Approach 2
-		String UpdateSQL2 = "UPDATE Department SET DEPARTMENTHEAD=? ,DEPARTMENTNAME=? WHERE id=?";
-		return this.jdbcTemplate.update(UpdateSQL2, department.getDepartmentHead(), department.getDepartmentName(),
-				department.getDepartmentId());
+		 return this.jdbcTemplate.update(UpdateSQL);
+		// Approach 2--Prepared statment
+		//String UpdateSQL2 = "UPDATE Department SET DEPARTMENTHEAD=? ,DEPARTMENTNAME=? WHERE id=?";
+		//return this.jdbcTemplate.update(UpdateSQL2, department.getDepartmentHead(), department.getDepartmentName(),
+			//	department.getDepartmentId());
+		
+		//Approach 3
+		//String UpdateSQL3= "UPDATE Department SET DEPARTMENTHEAD=:deptHead ,DEPARTMENTNAME=:deptName WHERE id=?";
 
 	}
 
@@ -97,10 +72,10 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
 		// Approach 1
 		String SelectById = "SELECT * FROM department WHERE id=" + departmentId;
 		System.out.println("SelectById=" + SelectById);
-		// return sqlMapping.findObject(departmentId);
+		 return sqlMapping.findObject(departmentId);
 
 		// Approach 2: Using Row Mapper
-		return this.jdbcTemplate.query(SelectById, new DeparmentRowMapper()).get(0);
+		//return this.jdbcTemplate.query(SelectById, new DeparmentRowMapper()).get(0);
 
 		// return null;
 
@@ -129,5 +104,38 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
 		}
 
 	}
+	
+
+	public DepartmentListSqlMapper getListSqlMapping() {
+		return listSqlMapping;
+	}
+
+	public void setListSqlMapping(DepartmentListSqlMapper listSqlMapping) {
+		this.listSqlMapping = listSqlMapping;
+	}
+
+	public NamedParameterJdbcTemplate getNamedJdbcTemplate() {
+		return namedJdbcTemplate;
+	}
+
+	public void setNamedJdbcTemplate(NamedParameterJdbcTemplate namedJdbcTemplate) {
+		this.namedJdbcTemplate = namedJdbcTemplate;
+	}
+
+	public DepartmentSqlMapping getSqlMapping() {
+		return sqlMapping;
+	}
+
+	public void setSqlMapping(DepartmentSqlMapping sqlMapping) {
+		this.sqlMapping = sqlMapping;
+	}
+	
+	public DepartmentRepositoryImpl(JdbcTemplate jdbcTemplate) {
+		super();
+		this.jdbcTemplate = jdbcTemplate;
+	}
+
+
+
 
 }

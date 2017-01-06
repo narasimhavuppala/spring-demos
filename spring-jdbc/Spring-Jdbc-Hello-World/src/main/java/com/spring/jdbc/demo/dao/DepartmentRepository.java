@@ -16,7 +16,7 @@ public interface DepartmentRepository {
 	//Delete
 	public int deleteDepartment(int departmentId);
 
-	//retrivals
+	//retrivals--Select
 	public int retrieveDepartmentsCount();
 	public Department retrieveDepartmentById(int departmentId);
 	public List<Department> retrieveDepartmentByName(String departmentname);
