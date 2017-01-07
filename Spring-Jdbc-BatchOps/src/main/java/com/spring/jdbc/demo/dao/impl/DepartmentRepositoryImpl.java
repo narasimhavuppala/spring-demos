@@ -34,7 +34,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
 		String SQL = "INSERT INTO DEPARTMENT(ID, DEPARTMENTHEAD,DEPARTMENTNAME) VALUES (" + department.getDepartmentId()
 				+ ",'" + department.getDepartmentHead() + "','" + department.getDepartmentName() + "')";
 
-		System.out.println(SQL);
+		//System.out.println(SQL);
 		this.jdbcTemplate.execute(SQL);
 		return true;
 	}
@@ -59,7 +59,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
 	@Override
 	public int deleteDepartment(int departmentId) {
 		String deleteSQL = "DELETE FROM Department where id=" + departmentId;
-		System.out.println("deleteSQL=" + deleteSQL);
+		//System.out.println("deleteSQL=" + deleteSQL);
 
 		int rows = this.jdbcTemplate.update(deleteSQL);
 

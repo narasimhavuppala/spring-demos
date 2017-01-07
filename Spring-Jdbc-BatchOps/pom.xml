@@ -3,7 +3,7 @@
 	
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.demo.spring.jdbc</groupId>
-	<artifactId>Spring-Jdbc-Hello-World</artifactId>
+	<artifactId>Spring-Jdbc-BatchOps</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	
 	<properties>
