@@ -20,10 +20,13 @@ public class TestJdbcTemplate {
 		// Create 10 objects
 
 		List<Department> objDepartmentList = new ArrayList<Department>();
+		
+		int [] batchIds=new int[1000];
 
 		for (int i = 0; i < 1000; i++) {
 			Department objDepartment = new Department();
 			objDepartment.setDepartmentId(i);
+			batchIds[i]=i;
 			objDepartment.setDepartmentName("DeptName" + i);
 			objDepartment.setDepartmentHead("DeptHead" + i);
 			objDepartmentList.add(i, objDepartment);
@@ -33,10 +36,11 @@ public class TestJdbcTemplate {
 		// Delete and Insert query
 		long start = System.currentTimeMillis();
 		Iterator<Department> itrDepartment = objDepartmentList.iterator();
+		objDeptdao.deleteBatchDepartment(batchIds);
 		while (itrDepartment.hasNext()) {
 
 			Department obj = itrDepartment.next();
-			objDeptdao.deleteDepartment(obj.getDepartmentId());
+			//objDeptdao.deleteDepartment(obj.getDepartmentId());
 			objDeptdao.createDepartment(obj);
 
 		}

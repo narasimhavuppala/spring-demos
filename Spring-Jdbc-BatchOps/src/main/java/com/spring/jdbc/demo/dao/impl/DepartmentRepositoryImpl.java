@@ -33,14 +33,16 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
 
 	@Override
 	public boolean createDepartment(Department department) {
-		//Stattement
-		/* String SQL = "INSERT INTO DEPARTMENT(ID,DEPARTMENTHEAD,DEPARTMENTNAME) VALUES (" +
-		 department.getDepartmentId()
-		 + ",'" + department.getDepartmentHead() + "','" +
-		 department.getDepartmentName() + "')";
-		this.jdbcTemplate.execute(SQL);*/
-		
-		//Prepared Statement
+		// Stattement
+		/*
+		 * String SQL =
+		 * "INSERT INTO DEPARTMENT(ID,DEPARTMENTHEAD,DEPARTMENTNAME) VALUES (" +
+		 * department.getDepartmentId() + ",'" + department.getDepartmentHead()
+		 * + "','" + department.getDepartmentName() + "')";
+		 * this.jdbcTemplate.execute(SQL);
+		 */
+
+		// Prepared Statement
 		String SQL = "INSERT INTO DEPARTMENT(ID, DEPARTMENTHEAD,DEPARTMENTNAME) VALUES (?,?,?)";
 
 		// System.out.println(SQL);
@@ -72,12 +74,14 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
 
 	@Override
 	public int deleteDepartment(int departmentId) {
-		
-		//Statement
-		/* String deleteSQL = "DELETE FROM Department where id=" + departmentId;
-		int rows = this.jdbcTemplate.update(deleteSQL);*/
-		
-		//Prepared Sttement
+
+		// Statement
+		/*
+		 * String deleteSQL = "DELETE FROM Department where id=" + departmentId;
+		 * int rows = this.jdbcTemplate.update(deleteSQL);
+		 */
+
+		// Prepared Sttement
 		String deleteSQL = "DELETE FROM Department where id=?";
 
 		int rows = this.jdbcTemplate.update(deleteSQL, departmentId);
@@ -85,7 +89,6 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
 		return rows;
 
 	}
-	
 
 	@Override
 	public Department retrieveDepartmentById(int departmentId) {
@@ -156,16 +159,50 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
 	}
 
 	@Override
-	public boolean[] createDepartment(List<Department> department) {
-		// TODO Auto-generated method stub
+	public boolean[] createDepartment(final List<Department> department) {
+
+		// Prepared Statement
+		String SQL = "INSERT INTO DEPARTMENT(ID, DEPARTMENTHEAD,DEPARTMENTNAME) VALUES (?,?,?)";
+
+		// System.out.println(SQL);
+		this.jdbcTemplate.update(SQL, new BatchPreparedStatementSetter() {
+
+			@Override
+			public int getBatchSize() {
+				return department.size();
+			}
+
+			@Override
+			public void setValues(PreparedStatement ps, int index) throws SQLException {
+
+				ps.setInt(0, department.get(index).getDepartmentId());
+				ps.setString(1, department.get(index).getDepartmentHead());
+				ps.setString(2, department.get(index).getDepartmentName());
+			}
+		});
+
 		return null;
 	}
 
 	@Override
-	public int[] deleteBatchDepartment(int[] departmentId) {
-		// TODO Auto-generated method stub
-		return null;
+	public int[] deleteBatchDepartment(final int[] departmentId) {
+
+		String deleteSQL = "DELETE FROM Department where id=?";
+
+		int[] rows = this.jdbcTemplate.batchUpdate(deleteSQL, new BatchPreparedStatementSetter() {
+
+			@Override
+			public int getBatchSize() {
+				// TODO Auto-generated method stub
+				return departmentId.length;
+			}
+
+			@Override
+			public void setValues(PreparedStatement ps, int index) throws SQLException {
+				ps.setInt(1, departmentId[index]);
+			}
+		});
+		return rows;
 	}
-	
 
 }
