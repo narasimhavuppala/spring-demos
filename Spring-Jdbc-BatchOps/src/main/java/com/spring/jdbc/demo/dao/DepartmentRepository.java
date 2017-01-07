@@ -9,12 +9,15 @@ public interface DepartmentRepository {
 	//Create 
 	
 	public boolean createDepartment(Department department);
+	public boolean[] createDepartment(List<Department> department);
 	
 	//Update
 	public int updateDepartment(Department department);
 	
 	//Delete
 	public int deleteDepartment(int departmentId);
+	
+	public int[] deleteBatchDepartment(int[] departmentId);
 
 	//retrivals--Select
 	public int retrieveDepartmentsCount();
