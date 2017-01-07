@@ -35,15 +35,9 @@ public class TestJdbcTemplate {
 
 		// Delete and Insert query
 		long start = System.currentTimeMillis();
-		Iterator<Department> itrDepartment = objDepartmentList.iterator();
 		objDeptdao.deleteBatchDepartment(batchIds);
-		while (itrDepartment.hasNext()) {
+		objDeptdao.createDepartment(objDepartmentList);
 
-			Department obj = itrDepartment.next();
-			//objDeptdao.deleteDepartment(obj.getDepartmentId());
-			objDeptdao.createDepartment(obj);
-
-		}
 		long end = System.currentTimeMillis();
 
 		System.out.println("Time for action  in Seconds =" + ((end - start) / 1000));

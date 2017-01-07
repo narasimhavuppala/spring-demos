@@ -165,7 +165,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
 		String SQL = "INSERT INTO DEPARTMENT(ID, DEPARTMENTHEAD,DEPARTMENTNAME) VALUES (?,?,?)";
 
 		// System.out.println(SQL);
-		this.jdbcTemplate.update(SQL, new BatchPreparedStatementSetter() {
+		this.jdbcTemplate.batchUpdate(SQL, new BatchPreparedStatementSetter() {
 
 			@Override
 			public int getBatchSize() {
@@ -175,9 +175,9 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
 			@Override
 			public void setValues(PreparedStatement ps, int index) throws SQLException {
 
-				ps.setInt(0, department.get(index).getDepartmentId());
-				ps.setString(1, department.get(index).getDepartmentHead());
-				ps.setString(2, department.get(index).getDepartmentName());
+				ps.setInt(1, department.get(index).getDepartmentId());
+				ps.setString(2, department.get(index).getDepartmentHead());
+				ps.setString(3, department.get(index).getDepartmentName());
 			}
 		});
 
